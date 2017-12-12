@@ -1,0 +1,14 @@
+The final assignment is to model the evolution of the Solar System in two dimensions. The file input.txt contains a list of planets (name, mass) as in assignment 2 but with some additional information: x position, y position, x velocity and y velocity. In this picture of the solar system, these are defined where the sun is at position (0,0) with velocity (0,0).
+
+0. Alter your Planet class to accommodate this additional information. This class has now become a snapshot at a moment in time of the position and speed of that planet. Add a new function to the the class, Evolve(double dt, double a), which will change x,y,vx,vy after it evolves for a certain time interval dt by the constant acceleration a. The evolved position and velocity (in x) are given by: 
+x=x+vx*dt+1/2*a*dt*dt
+vx=vx+a*dt
+Note, name and mass will never change, but x,y,vx,vy will change in time.
+The acceleration will be assumed to be constant for a given time interval but will be determined by the sum of the gravitational forces resulting from the other bodies in the solar system, divided by the mass of the planet in question. But first we must set up our new planet class.
+
+1. You now want to provide two more inputs to your programme: the interval of time on which we want to model the system's movement (for example one year, or 365 days) and the interval of time where we can assume that the acceleration is constant on a given object (the time step in our numerical modelling), for example 1 day. These quantities should come from the command line arguments.
+
+2. Next create a new class called System. Among it’s members, there should be a vector of type Planet. The class should also have a method Evolve(double dt), which will change the solar system, i.e. every planet, for each time interval dt, ex one day. This function should loop over all the planets and let each of them evolve (using the Evolve function of the Planets class). The acceleration of each planet should be determined from the sum of the gravitational forces due to all the other bodies in the solar system. But be careful, to evolve one planet, you should use the unchanged variables. For example, when the loop reaches the second planet, the first planet has already been changed, but we should use the unchanged values. So we need a copy of the previous system used to evolve the current system.
+
+3. The output should be a new file for each Planet (named after the planet) that contains a line for each step in the evolution detailing the number of the step (eg. 1, 2), the real time of that step (eg., one day, two days), the x and y coordinates of the Planet. Check that your program works in producing elliptical orbits for the planets and use your program to find the longest time of orbit of all the planets.
+
